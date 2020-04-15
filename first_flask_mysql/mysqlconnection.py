@@ -18,7 +18,7 @@ class MySQLConnection:
             try:
                 query = cursor.mogrify(query, data)
                 print("Running Query:", query)
-                executable = cursor.execute(query, data)
+                execution = cursor.execute(query, data) # pylint: disable=unused-variable
                 if query.lower().find("insert") >= 0:
                     # INSERT queries will return the ID NUMBER of the row inserted
                     self.connection.commit()
@@ -36,7 +36,7 @@ class MySQLConnection:
                 return False
             finally:
                 # close the connection
-                self.connection.close() 
+                self.connection.close() # pylint: disable=unused-variable
 # connectToMySQL receives the database we're using and uses it to create an instance of MySQLConnection
 def connectToMySQL(db):
     return MySQLConnection(db)
